@@ -14,14 +14,24 @@
 #include <stdio.h>
 
 int main() {
+	int max = 0;
 	int N = 0;
 	int i = 0;
-	scanf("%d",&N);
-	int score[N];
-	for(i = 0;i<N;i++) scanf("%d",&score[i]);
+	double result = 0;
 	
-	for(i = 0;i<N;i++) printf("%d ",score[i]);
+	scanf("%d", &N);
+	double score[N];
 	
-	printf("\n");
+	for(i = 0; i < N; i++) scanf("%lf", &score[i]);
+	
+	max=score[0];
+	
+	for(i = 1; i < N; i++) if(max<score[i]) max = score[i];
+	
+	for(i = 0; i < N; i++) score[i] = score[i] / max * 100;
+
+	for(i = 0; i < N; i++) result += score[i];
+
+	printf("%lf\n", result / N);
 	return 0;
 }
