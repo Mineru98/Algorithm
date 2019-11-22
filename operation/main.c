@@ -15,23 +15,18 @@ int main() {
 	}
 	
 	for(i=0;i<(N/2);i++) {
-		
 		// 곱셈 연산 부분
-		for(i=0;i<mul;i++){
-			if(str[i]=='*') {
-				result = str[i-1]*str[i+1];
-				str[i]=0;
-			}
+		if(str[i]=='*') {
+			result = str[i-1]*str[i+1];
+			str[i]=0;
 		}
-		
-		for(i=0;i<(N/2)-mul;i++){
-			if(str[i]=='+'){
-				result = str[i-1]+str[i+1];
-				str[i]=0;
-			}else if(str[i]=='-'){
-				result = str[i-1]-str[i+1];
-				str[i]=0;
-			}
+	
+		if(str[i]=='+'){
+			result = str[i-1]+str[i+1];
+			str[i]=0;
+		}else if(str[i]=='-'){
+			result = str[i-1]-str[i+1];
+			str[i]=0;
 		}
 	}
 	
