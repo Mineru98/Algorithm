@@ -21,6 +21,7 @@ int main() {
 			str[i]=0;
 		}
 	
+		// 덧셈/뺄셈 연산 부분
 		if(str[i]=='+'){
 			result = str[i-1]+str[i+1];
 			str[i]=0;
