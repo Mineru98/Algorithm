@@ -10,6 +10,10 @@ int main() {
 				printf(" ");
 			}
 			printf("*");
+		} else if(i==N-1) {
+			for(j=0;j<2*N-1;j++) {
+				printf("*");
+			}
 		} else {
 			for(j=1;j<2*N-(N-1-i);j++) {
 				if(j==N-i||j==N+i)
