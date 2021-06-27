@@ -4,30 +4,26 @@
 
 #define NUM_SIZE 10
 
-void selectSort(int* pArr)
+void insertSort(int* pArr)
 {
-    for (int i = 0; i < NUM_SIZE; i++) {
-        int tmp;
-		for (int j = 0; j < NUM_SIZE; j++) {
-            // 오름차순
-            if (pArr[i] < pArr[j])
-            {
-                tmp = pArr[i];
-                pArr[i] = pArr[j];
-                pArr[j] = tmp;
-            }
+    int i, j;
+    int key;
 
-            // 내림차순
-            /*
-            if (pArr[i] > pArr[j])
+    for (i = 1; i < NUM_SIZE; i++)
+    {
+        key = pArr[i];
+        for (j = i - 1; j >= 0; j--){
+            if (pArr[j] > key)
             {
-                tmp = pArr[i];
-                pArr[i] = pArr[j];
-                pArr[j] = tmp;
+                pArr[j + 1] = pArr[j];
             }
-            */
+            else
+            {
+                break;
+            }
         }
-	}
+        pArr[j + 1] = key;
+    }
 }
 
 int* randomPlace()
@@ -68,7 +64,7 @@ int main()
     }
     printf("\n");
 
-    selectSort(pArr);
+    insertSort(pArr);
 
 
     printf("After : ");
