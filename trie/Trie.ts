@@ -1,31 +1,41 @@
+interface INode {
+	key?: string;
+	data?: string;
+}
+
 class Node {
-	constructor(key, data = null) {
+	public key: string;
+	public data: string;
+	public children: INode;
+
+	constructor(key: string, data: string = null) {
 		this.key = key;
 		this.data = data;
 		this.children = {};
 	}
 }
 
-class Trie {
+export class Trie {
+	private head: Node;
 	constructor() {
 		this.head = new Node(null);
 	}
 
-	insert(string) {
-		let current_node = this.head;
-		for (const char of string) {
+	insert(str: string) {
+		let current_node: Node = this.head;
+		for (const char of str) {
 			if (!current_node.children.hasOwnProperty(char)) {
 				current_node.children[char] = new Node(char);
 			}
 			current_node = current_node.children[char];
 		}
-		current_node.data = string;
+		current_node.data = str;
 	}
 
-	search(string) {
+	search(str: string) {
 		let current_node = this.head;
 
-		for (const char of string) {
+		for (const char of str) {
 			if (current_node.children.hasOwnProperty(char)) {
 				current_node = current_node.children[char];
 			} else {
@@ -40,8 +50,8 @@ class Trie {
 		}
 	}
 
-	starts_with(prefix) {
-		let current_node = this.head;
+	starts_with(prefix: string) {
+		let current_node: Node = this.head;
 		let words = [];
 
 		for (const p of prefix) {
@@ -52,8 +62,8 @@ class Trie {
 			}
 		}
 
-		let current_node_list = [current_node];
-		let next_node = [];
+		let current_node_list: Node[] = [current_node];
+		let next_node: Node[] = [];
 		while (true) {
 			for (const node of current_node_list) {
 				if (node.data) {
@@ -73,5 +83,3 @@ class Trie {
 		return words;
 	}
 }
-
-exports.Trie = Trie;
