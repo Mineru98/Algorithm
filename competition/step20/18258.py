@@ -1,11 +1,12 @@
 # -*- coding:utf-8 -*-
 import sys
+from collections import deque
 
 input = sys.stdin.readline
 
 N = int(input())
 
-arr = []
+queue = deque([])
 for _ in range(N):
     line = input().split()
     if len(line) == 2:
@@ -14,21 +15,26 @@ for _ in range(N):
     else:
         action = line[0]
     if action == "push":
-        arr.append(num)
-    elif action == "top":
-        if len(arr) == 0:
-            print(-1)
+        queue.append(num)
+    elif action == "front":
+        if len(queue) > 0:
+            print(queue[0])
         else:
-            print(arr[len(arr) - 1])
+            print(-1)
+    elif action == "back":
+        if len(queue) > 0:
+            print(queue[-1])
+        else:
+            print(-1)
     elif action == "size":
-        print(len(arr))
+        print(len(queue))
     elif action == "empty":
-        if len(arr) == 0:
+        if len(queue) == 0:
             print(1)
         else:
             print(0)
     elif action == "pop":
-        if len(arr) == 0:
-            print(-1)
+        if len(queue) > 0:
+            print(queue.popleft())
         else:
-            print(arr.pop())
+            print(-1)
